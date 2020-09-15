@@ -2,104 +2,33 @@
 
 <!DOCTYPE HTML>
 <html>
-    <script>
-        /* Plays one round, returning output string and string indicating win, loss, or draw */
-        function playRound(playerSelection, computerSelection) {
-
-            let state; /* win, lose, draw */
-            let beats = "beats"; /* in case of draw, change to "draw" */
-
-            playerSelection = playerSelection.toLowerCase(); /* normalize input */
-
-            /* Change win-state according to player and computer selections */
-            switch(playerSelection) {
-            case("rock"):
-                switch(computerSelection) {
-                    case("rock"):
-                        state = "draw";
-                        break;
-                    case("paper"):
-                        state = "lose";
-                        break;
-                    case("scissors"):
-                        state = "win";
-                        break;
-                }
-                break;
-            case("paper"):
-            switch(computerSelection) {
-                    case("rock"):
-                        state = "win";
-                        break;
-                    case("paper"):
-                        state = "draw";
-                        break;
-                    case("scissors"):
-                        state = "lose";
-                        break;
-                }
-                break;
-            case("scissors"):
-            switch(computerSelection) {
-                    case("rock"):
-                        state = "lose";
-                        break;
-                    case("paper"):
-                        state = "win";
-                        break;
-                    case("scissors"):
-                        state = "draw";
-                        break;
-                }
-                break;
-            }
-
-            /* Return results */
-
-            /* Draw case */
-            if (state === "draw") {
-                beats = "draws";
-                return [`You ${capFirst(state)}! ${capFirst(playerSelection)} ${beats} ${capFirst(computerSelection)}.`, state];
-            }
-
-            /* Win/Lose case */
-            return (state === "win") ? 
-            [`You ${capFirst(state)}! ${capFirst(playerSelection)} ${beats} ${capFirst(computerSelection)}.`, state]:
-            [`You ${capFirst(state)}! ${capFirst(computerSelection)} ${beats} ${capFirst(playerSelection)}.`, state];
-        }
-
-        /* Plays 5 rounds, outputting the results of each round and the final score */
-        function game() {
-            let playerScore = 0;
-            let computerScore = 0;
-
-            /* Play 5 rounds */
-            for (let i = 0; i < 5; i++) {
-                let results = playRound(prompt("Rock, Paper, Scissors?"), computerPlay());
-
-                /* If not draw, increment player or computer score */
-                if (results[1] !== "draw")
-                    results[1] === "win" ? playerScore++ : computerScore++;
-
-                /* Print individual results to console */
-                console.log(`Game ${i+1}: ${results[0]}`);
-            }
-
-            /* Print final scores to console */
-            console.log(`Final Score: ${playerScore}-${computerScore}`);
-        }
-
-        /* Capitalize the first letter of a string */
-        function capFirst(string){
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
-
-        /* Randomly return a computer choice */
-        function computerPlay() {
-            let choices = ["rock", "paper", "scissors"];
-            return choices[Math.floor(Math.random()*3)];
-        }
-
-        game();
+    <head>
+        <link rel="stylesheet" href="mystyle.css">
+        <title>Rock Paper Scissors</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header><h1>Rock Paper Scissors</h1></header>
+        <div class='content'>
+            <div id='buttonContainer'>
+                <button id='rock'>Rock</button> 
+                <button id = 'paper'>Paper</button>
+                <button id = 'scissors'>Scissors</button>
+            </div>
+            <div id="output">
+                <h3 id='yourchoice'></h3>
+                <h3 id= 'computerchoice'></h3>
+                <h3 id = "outputtext"></h3>
+            </div>
+            <div id="scores">
+                <h3 id='yourscore'>Your Score: 0</h3>
+                <h3 id='computerscore'>Computer Score: 0</h3>
+                <h3 id="winlose"></h3>
+                <button id='reset'>Reset Scores</button>
+            </div>
+        </div>
+    </body>
+    <script src = 'myscript.js'>
+        
     </script>
 </html>

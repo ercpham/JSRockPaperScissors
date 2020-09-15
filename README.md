@@ -1,2 +1,2 @@
 # JSRockPaperScissors
-Making Rock, Paper, Scissors to practice JavaScript.
+Rock Paper Scissors Web Application
